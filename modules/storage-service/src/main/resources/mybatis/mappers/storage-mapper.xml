@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.ge.common.storage.service.mapper.StorageMapper">
+
+    <resultMap id="storageBeanMap" type="fr.ge.common.storage.bean.StorageBean">
+        <result property="id" column="STORAGEID" />
+        <result property="originalfilename" column="ORIGINALFILENAME" />
+        <result property="tray" column="TRAY" />
+        <result property="path" column="PATH" />
+        <result property="dateCreation" column="DATECREATION" />
+        <result property="referenceId" column="REFERENCEID" />
+    </resultMap>
+
+	 <insert id="insertStorage" parameterType="fr.ge.common.storage.bean.StorageBean">
+	    insert into storage (storageId, originalfilename, tray, path, dateCreation, referenceId) 
+	    values (#{storageBean.id}, #{storageBean.originalfilename}, #{storageBean.tray}, #{storageBean.path}, #{storageBean.dateCreation}, #{storageBean.referenceId})
+	 </insert>
+
+    <select id="getStorageByIdAndTray" statementType="PREPARED" resultMap="storageBeanMap">
+        SELECT storageId, originalfilename, tray, path, dateCreation, referenceId
+		FROM storage
+		WHERE storageid = #{storageId} and tray = #{storageTray}
+    </select>
+
+    <delete id="deleteStorageByIdAndTray">
+        DELETE FROM storage WHERE storageid = #{storageId} and tray = #{storageTray}
+    </delete>
+
+    <select id="getAll" statementType="PREPARED" resultMap="storageBeanMap">
+        SELECT storageId, originalfilename, tray, path, dateCreation, referenceId
+		FROM storage
+		WHERE tray = #{storageTray} order by dateCreation, storageId
+    </select>
+	 
+</mapper>

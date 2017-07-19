@@ -1,0 +1,146 @@
+.btn-primary {
+    background-color: @ge-color-blue;
+    border-color: darken(@ge-color-blue, 5%);
+    color: #FFF;
+
+    border-radius: 0px;
+    padding-right: @padding-large-horizontal;
+
+    &:before {
+        font-family: FontAwesome;
+        content: @fa-var-chevron-right;
+        margin-right: @padding-base-horizontal;
+    }
+
+    &:hover {
+        background-color: lighten(@ge-color-blue, 10%);
+        border-color: lighten(darken(@ge-color-blue, 5%), 10%);
+        color: #FFF;
+    }
+}
+
+.btn-success {
+    background-color: @ge-color-green;
+    border-color: @ge-color-green;
+    color: #FFF;
+
+    border-radius: 0px;
+    padding-right: @padding-large-horizontal;
+
+    &:before {
+        font-family: FontAwesome;
+        content: @fa-var-chevron-right;
+        margin-right: @padding-base-horizontal;
+    }
+
+    &:hover, &:focus {
+        background-color: @ge-color-green;
+        border-color:@ge-color-green;
+        color: #FFF;
+    }
+}
+.btn-default {
+    background-color: @ge-color-gray;
+    border-color: darken(@ge-color-gray, 5%);
+    color: #FFF;
+
+    border-radius: 0px;
+    #padding > .horizontal(@padding-large-horizontal);
+
+    &:hover {
+        background-color: lighten(@ge-color-gray, 10%);
+        border-color: lighten(darken(@ge-color-gray, 5%), 10%);
+        color: #FFF;
+    }
+}
+
+.btn {
+    &.btn-help {
+        background-color: transparent;
+        border-style: none;
+        color: @ge-color-blue;
+        font-size: @font-size-h3;
+        line-height: @font-size-h3;
+        margin-top: -1 * ceil(@font-size-h3 / 12);
+        margin-right: ceil(@font-size-h3 / 12);
+        margin-bottom: ceil(@font-size-h3 / 12);
+        margin-left: ceil(@font-size-h3 / 12);
+        padding: ceil(@font-size-h3 / 6) ceil(@font-size-h3 / 4);
+
+        &.btn-sm {
+            font-size: @font-size-h4;
+            font-weight: bold;
+            line-height: @font-size-h4;
+            margin-top: -1 * ceil(@font-size-h4 / 12);
+            margin-right: ceil(@font-size-h4 / 12);
+            margin-bottom: ceil(@font-size-h4 / 12);
+            margin-left: ceil(@font-size-h4 / 12);
+            padding: ceil(@font-size-h4 / 6) ceil(@font-size-h4 / 4);
+        }
+
+        &:hover, &:active, &:focus {
+            border-style: none;
+            box-shadow: none;
+            color: lighten(@ge-color-blue, 10%);
+            outline: none;
+        }
+    }
+
+    &.btn-step {
+        border-radius: @font-size-h1 !important;
+        box-shadow: 0px 1px 3px rgba(3, 3, 3, .2);
+        height: 1.8em;
+        font-size: @font-size-h1;
+        width: 1.8em;
+
+        &:not([href]) {
+            color: #AAA;
+        }
+    }
+
+}
+
+ul.list-steps {
+    font-size: @font-size-h1;
+    list-style: none;
+    padding-left: 0px;
+
+    li {
+        background-color: @breadcrumb-bg;
+        margin: 1em 1em -1em 1em;
+        padding: 0 0 1em 0;
+        width: .6em;
+
+        &:last-child {
+            background-color: transparent;
+        }
+
+        .btn-step {
+            background-color: #fff;
+            color: #000;
+            margin: -1.2em -.6em 0 -.6em;
+
+            &[disabled] {
+                color: darken(@breadcrumb-bg, 10%);
+                background-color: lighten(@breadcrumb-bg, 2%);
+                opacity: 1;
+            }
+
+            &[data-toggle="tooltip"] {
+                + .tooltip > .tooltip-inner {
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        &.active .btn-step {
+            background-color: @ge-color-blue;
+            color: #fff;
+        }
+    }
+}
+
+.input-group-btn:last-child > .btn {
+    border-top-right-radius: @input-border-radius;
+    border-bottom-right-radius: @input-border-radius;
+}

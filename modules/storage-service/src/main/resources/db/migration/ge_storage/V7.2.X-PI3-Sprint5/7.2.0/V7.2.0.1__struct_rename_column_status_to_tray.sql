@@ -1,0 +1,1 @@
+alter table storage rename column status to tray;

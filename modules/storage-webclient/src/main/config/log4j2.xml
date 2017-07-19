@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="info" strict="true">
+
+	<!-- Appenders -->
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-5p %d{ISO8601} %C - (U:%X{U}) %m%n"/>
+		</Console>
+		<RollingFile name="tech" fileName="@@log.file.technical@@"
+			filePattern="@@log.file.technical@@-%d{MM-dd-yyyy}-%i.gz">
+			<PatternLayout pattern="%-5p %d{ISO8601} %C (U:%X{U}) %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="@@log.max_size@@" />
+			</Policies>
+			<DefaultRolloverStrategy max="@@log.max_index@@" />
+		</RollingFile>
+		<RollingFile name="fonc" fileName="@@log.file.functional@@"
+			filePattern="@@log.file.functional@@-%d{MM-dd-yyyy}-%i.gz">
+			<PatternLayout pattern="%-5p %d{ISO8601} %C (U:%X{U}) %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="@@log.max_size@@" />
+			</Policies>
+			<DefaultRolloverStrategy max="@@log.max_index@@" />
+		</RollingFile>
+		<RollingFile name="thirdParty" fileName="@@log.file.thirdParty@@"
+			filePattern="@@log.file.thirdParty@@-%d{MM-dd-yyyy}-%i.gz">
+			<PatternLayout pattern="%-5p %d{ISO8601} %C (U:%X{U}) %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="@@log.max_size@@" />
+			</Policies>
+			<DefaultRolloverStrategy max="@@log.max_index@@" />
+		</RollingFile>
+	</Appenders>
+	
+	<Loggers>
+		<!--On fixe le niveau de log a WARN pour eviter les exception de type ConcurrentModificationException 
+			en mode DEBUG au niveau du RootLogger -->
+		<Logger name="org.springframework.transaction" level="warn">
+		</Logger>
+
+		<!--On fixe le niveau de log a WARN pour eviter les exception de type ConcurrentModificationException 
+			en mode DEBUG au niveau du RootLogger -->
+		<Logger name="org.springframework.orm" level="warn">
+		</Logger>
+
+		<Logger name="org.springframework.binding" level="@@log.level_fwk@@">
+			<AppenderRef ref="thirdParty" />
+		</Logger>
+
+		<Logger name="org.springframework.web" level="@@log.level_fwk@@">
+			<AppenderRef ref="thirdParty" />
+		</Logger>
+
+		<Logger name="org.springframework.webflow" level="@@log.level_fwk@@">
+			<AppenderRef ref="thirdParty" />
+		</Logger>
+
+		<Logger name="org.thymeleaf" level="@@log.level_fwk@@">
+			<AppenderRef ref="thirdParty" />
+		</Logger>
+
+		<Logger name="net.sf.appstatus" level="@@log.level_fwk@@">
+			<AppenderRef ref="thirdParty" />
+		</Logger>
+
+		<Logger name="fr.ge" level="@@log.level_ge@@">
+			<AppenderRef ref="fonc" />
+		</Logger>
+
+		<Logger name="fonc" level="@@log.level_ge@@">
+			<AppenderRef ref="fonc" />
+		</Logger>
+
+		<Logger name="tech" level="@@log.level_ge@@">
+			<AppenderRef ref="tech" />
+		</Logger>
+
+
+		<!-- Root Logger -->
+		<Root>
+			<AppenderRef ref="console" level="@@log.level_ge@@" />
+		</Root>
+	</Loggers>
+
+
+</Configuration>

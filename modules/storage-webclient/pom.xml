@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SCN Guichet Entreprises, Capgemini and contributors (2014-2016) 
+	This software is a computer program whose purpose is to maintain and administrate 
+	standalone forms. This software is governed by the CeCILL license under French 
+	law and abiding by the rules of distribution of free software. You can use, 
+	modify and/ or redistribute the software under the terms of the CeCILL license 
+	as circulated by CEA, CNRS and INRIA at the following URL "http://www.cecill.info". 
+	As a counterpart to the access to the source code and rights to copy, modify 
+	and redistribute granted by the license, users are provided only with a limited 
+	warranty and the software's author, the holder of the economic rights, and 
+	the successive licensors have only limited liability. In this respect, the 
+	user's attention is drawn to the risks associated with loading, using, modifying 
+	and/or developing or reproducing the software by the user in light of its 
+	specific status of free software, that may mean that it is complicated to 
+	manipulate, and that also therefore means that it is reserved for developers 
+	and experienced professionals having in-depth computer knowledge. Users are 
+	therefore encouraged to load and test the software's suitability as regards 
+	their requirements in conditions enabling the security of their systems and/or 
+	data to be ensured and, more generally, to use and operate it in the same 
+	conditions as regards security. The fact that you are presently reading this 
+	means that you have had knowledge of the CeCILL license and that you accept 
+	its terms. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.ge.common.storage</groupId>
+		<artifactId>storage</artifactId>
+		<relativePath>../..</relativePath>
+	</parent>
+	<artifactId>storage-webclient</artifactId>
+	<version>1.0-NO.COMMIT-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>COMMON STORAGE WEBCLIENT</name>
+
+	<properties>
+		<storage-ws-contract.version>1.0-NO.COMMIT-SNAPSHOT</storage-ws-contract.version>
+		<ge-authentification-ct.version>2.3.7.0-SNAPSHOT</ge-authentification-ct.version>
+		<ge-core.version>2.3.7.0-SNAPSHOT</ge-core.version>
+		<ge-i18n-thymeleaf3.version>2.3.6.1</ge-i18n-thymeleaf3.version>
+		<webapp-target-dir>${project.build.directory}/${project.build.finalName}</webapp-target-dir>
+	</properties>
+
+	<dependencies>
+		<!-- Guichet-Entreprises dependencies -->
+		<dependency>
+			<groupId>fr.ge.common.storage</groupId>
+			<artifactId>storage-ws-contract</artifactId>
+			<version>${storage-ws-contract.version}</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>fr.ge</groupId> -->
+<!-- 			<artifactId>ge-authentification-ct</artifactId> -->
+<!-- 			<version>${ge-authentification-ct.version}</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>fr.ge.core</groupId>
+			<artifactId>ge-core</artifactId>
+			<version>${ge-core.version}</version>
+		</dependency>
+		<dependency>
+            <groupId> fr.ge.common.i18n</groupId>
+            <artifactId>ge-i18n-thymeleaf3</artifactId>
+            <version>${ge-i18n-thymeleaf3.version}</version>
+        </dependency>	
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.pegdown</groupId>
+			<artifactId>pegdown</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.appstatus</groupId>
+			<artifactId>appstatus-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.appstatus</groupId>
+			<artifactId>appstatus-services-inprocess</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-testing</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-assert</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+        <dependency>
+             <groupId>org.apache.logging.log4j</groupId>
+             <artifactId>log4j-slf4j-impl</artifactId>
+             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+             <groupId>org.apache.logging.log4j</groupId>
+             <artifactId>log4j-api</artifactId>
+             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+             <groupId>org.apache.logging.log4j</groupId>
+             <artifactId>log4j-core</artifactId>
+             <scope>runtime</scope>
+        </dependency>
+	</dependencies>
+	<build>
+		<finalName>ge-storage</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.xml</exclude>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>${project.build.directory}/generated-resources</directory>
+			</resource>
+		</resources>
+        <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <packagingExcludes>css/mixins/**, **/*.less</packagingExcludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>full-clean</id>
+			<activation>
+				<property>
+					<name>fullClean</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>3.0.0</version>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>${project.basedir}</directory>
+									<includes>
+										<include>node/**</include>
+										<include>node_modules/**</include>
+										<include>bower_components/**</include>
+									</includes>
+								</fileset>
+							</filesets>
+							<followSymLinks>false</followSymLinks>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>m2e</id>
+			<activation>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>deploy-configuration</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${basedir}/target/classes</outputDirectory>
+									<resources>
+										<resource>
+											<directory>src/main/config/</directory>
+											<includes>
+												<include>*.xml</include>
+												<include>*.properties</include>
+											</includes>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+									<encoding>UTF-8</encoding>
+									<!-- Configuration pour hawai -->
+									<useDefaultDelimiters>false</useDefaultDelimiters>
+									<delimiters>
+										<delimiter>@@*@@</delimiter>
+									</delimiters>
+									<filters>
+										<filter>${basedir}/src/main/filters/gqual-storage-webapp.properties</filter>
+									</filters>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

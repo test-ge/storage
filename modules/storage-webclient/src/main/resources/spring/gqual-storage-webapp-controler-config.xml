@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop  
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
+    	   http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring.xsd
+    	   http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd 
+    	   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Le scan des composants pour le autowire et les annotations -->
+	<context:component-scan base-package="fr.ge.common.*" />
+
+	<!-- Enables controllers mapped with @RequestMapping annotations, formatting 
+		annotations @NumberFormat @DateTimeFormat, and JSR 303 style validation -->
+	<mvc:annotation-driven />
+
+	<mvc:resources mapping="/resources/**"
+		location="/, classpath:/META-INF/web-resources/" />
+	<mvc:default-servlet-handler />
+
+	<!-- Thymeleaf template resolver -->
+	<bean id="templateResolver"
+		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="templateMode" value="HTML5" />
+		<property name="characterEncoding" value="UTF-8" />
+		<property name="cacheable" value="false" />
+	</bean>
+
+	<!-- Resolves logical view names returned by Controllers to Tiles; a view 
+		name to resolve is treated as the name of a tiles definition -->
+    <bean id="tilesViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="geTemplateEngine" />
+        <property name="order" value="1" />
+        <property name="characterEncoding" value="UTF-8" />
+    </bean>
+
+</beans>

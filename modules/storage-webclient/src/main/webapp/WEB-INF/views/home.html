@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{commons/layout/default(scripts=~{::scripts}, globalContent=~{::globalContent})}">
+<head>
+</head>
+<body>
+	<div th:fragment="globalContent">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-defaut">
+					<div class="panel-heading panel-archived tray-description" th:if="${archived}"><i class="fa fa-archive fa-2x"></i>
+						<span th:text="#{ARCHIVED}"></span>
+						<span>(</span><span id="tray-archived-length" th:text="${archived.totalResult}"></span><span>)</span>
+						<a onClick="refreshTray('archived')"><i class="fa fa-refresh fa-2x tray-description"></i></a>
+					</div>
+					<div class="panel-heading panel-archived tray-description" th:unless="${archived}"><i class="fa fa-archive fa-2x"></i> <span th:text="#{ARCHIVED}"></span></div>
+					<div class="panel-body" th:unless="${archived}">
+						<span th:text="#{An technical error has occured when getting files.}"></span>
+					</div>
+					<div class="panel-body" th:if="${archived}">
+			            <ul id="tray-archived-tree" class="tray">
+			                <li><a href="#">...</a>
+			                	<ul>
+								    <li th:each="storedYear : ${archived.tree}" th:object="${storedYear}">
+							    		<a th:text="${storedYear.year}"></a>
+					                	<ul>
+					                		<div th:each="storedMonth : ${storedYear.storedMonth}" th:object="${storedMonth}">
+						                		<li><a th:text="${storedMonth.month}"></a>
+						                			<div th:each="storageId : ${storedMonth.storageId}" th:object="${storageId}">
+							                			<ul>
+							                				<li class="storage-leaf">
+														        <a><span th:text="${storageId}"></span></a>
+															    <a class="storage-link" th:href="@{download(uid=${storageId}, tray=${archived.tray})}"><i class="fa fa-download fa-lg"></i></a>
+															    <a 
+															    class="storage-link storage-delete" 
+															    href="#" 
+															    data-toggle="modal" 
+															    data-target="#confirmDeleteModal"
+															    th:data-id="${storageId}"
+															    th:data-tray="${archived.tray}"
+															    ><i class="fa fa-trash fa-lg"></i></a>
+							                				</li>
+							                			</ul>
+						                			</div>
+						                		</li>
+					                		</div>
+										</ul>
+								    </li>
+								</ul>
+			                </li>
+			            </ul>
+		            </div>
+	            </div>
+         	</div>
+			<div class="col-md-4">
+				<div class="panel panel-defaut">
+					<div class="panel-heading panel-error tray-description" th:if="${error}"><i class="fa fa-exclamation-triangle fa-2x"></i>
+						<span th:text="#{ERROR}"></span>
+						<span>(</span><span id="tray-error-length" th:text="${error.totalResult}"></span><span>)</span>
+						<a onClick="refreshTray('error')"><i class="fa fa-refresh fa-2x tray-description"></i></a>
+					</div>
+					<div class="panel-heading panel-error tray-description" th:unless="${error}"><i class="fa fa-exclamation-triangle fa-2x"></i> <span th:text="#{ERROR}"></span></div>
+					<div class="panel-body" th:unless="${error}">
+						<span th:text="#{An technical error has occured when getting files.}"></span>
+					</div>
+					<div class="panel-body" th:if="${error}">
+			            <ul id="tray-error-tree" class="tray" th:if="${error}">
+			                <li><a href="#">...</a>
+			                	<ul>
+								    <li th:each="storedYear : ${error.tree}" th:object="${storedYear}">
+							    		<a th:text="${storedYear.year}"></a>
+					                	<ul>
+					                		<div th:each="storedMonth : ${storedYear.storedMonth}" th:object="${storedMonth}">
+						                		<li><a th:text="${storedMonth.month}"></a>
+						                			<div th:each="storageId : ${storedMonth.storageId}" th:object="${storageId}">
+							                			<ul>
+							                				<li class="storage-leaf">
+														        <a><span th:text="${storageId}"></span></a>
+															    <a class="storage-link" th:href="@{download(uid=${storageId}, tray=${error.tray})}"><i class="fa fa-download fa-lg"></i></a>
+															    <a 
+															    class="storage-link storage-delete" 
+															    href="#" 
+															    data-toggle="modal" 
+															    data-target="#confirmDeleteModal"
+															    th:data-id="${storageId}"
+															    th:data-tray="${error.tray}"
+															    ><i class="fa fa-trash fa-lg"></i></a>
+							                				</li>
+							                			</ul>
+						                			</div>
+						                		</li>
+					                		</div>
+										</ul>
+								    </li>
+								</ul>
+			                </li>
+			            </ul>
+		            </div>
+           		</div>
+           </div>
+			<div class="col-md-4">
+				<div class="panel panel-defaut">
+					<div class="panel-heading panel-inferno tray-description" th:if="${inferno}"><i class="fa fa-times fa-2x"></i>
+						<span th:text="#{INFERNO}"></span>
+						<span>(</span><span id="tray-inferno-length" th:text="${inferno.totalResult}"></span><span>)</span>
+						<a onClick="refreshTray('inferno')"><i class="fa fa-refresh fa-2x tray-description"></i></a>
+					</div>
+					<div class="panel-heading panel-inferno tray-description" th:unless="${inferno}"><i class="fa fa-times fa-2x"></i> <span th:text="#{INFERNO}"></span></div>
+					<div class="panel-body" th:unless="${inferno}">
+						<span th:text="#{An technical error has occured when getting files.}"></span>
+					</div>
+					<div class="panel-body" th:if="${inferno}">
+			            <ul id="tray-inferno-tree" class="tray" th:if="${inferno}">
+			                <li><a href="#">...</a>
+			                	<ul>
+								    <li th:each="storedYear : ${inferno.tree}" th:object="${storedYear}">
+							    		<a th:text="${storedYear.year}"></a>
+					                	<ul>
+					                		<div th:each="storedMonth : ${storedYear.storedMonth}" th:object="${storedMonth}">
+						                		<li><a th:text="${storedMonth.month}"></a>
+						                			<div th:each="storageId : ${storedMonth.storageId}" th:object="${storageId}">
+							                			<ul>
+							                				<li class="storage-leaf">
+														        <a><span th:text="${storageId}"></span></a>
+															    <a class="storage-link" th:href="@{download(uid=${storageId}, tray=${inferno.tray})}"><i class="fa fa-download fa-lg"></i></a>
+															    <a 
+															    class="storage-link storage-delete" 
+															    href="#" 
+															    data-toggle="modal" 
+															    data-target="#confirmDeleteModal"
+															    th:data-id="${storageId}"
+															    th:data-tray="${inferno.tray}"
+															    ><i class="fa fa-trash fa-lg"></i></a>
+							                				</li>
+							                			</ul>
+						                			</div>
+						                		</li>
+					                		</div>
+										</ul>
+								    </li>
+								</ul>
+			                </li>
+			            </ul>
+		            </div>
+           		</div>
+           </div>
+		</div>
+           
+		<div class="modal fade" id="confirmDeleteModal" tabindex="-1"
+			data-backdrop="static" role="dialog"
+			aria-labelledby="mySmallModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="deleteHeaderLabel"><span th:text="#{Deleting a file}"></span></h4>
+					</div>
+					<div class="modal-body"></div>
+					<div class="modal-footer">
+						<form id="delete-form" class="form-horizontal" th:action="@{delete}" method="post">
+							<input type="hidden" name="uid" id="uid" 
+								value="" /> 
+							<input type="hidden" name="tray" id="tray"
+								value="" /> 
+							<button class="btn btn-default" id="delete_cancel"
+								data-dismiss="modal"><span th:text="#{Cancel}"></span></button>
+							<button type="submit" class="btn btn-primary"
+								id="delete_ok"><span th:text="#{Submit}"></span></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/tree.js" th:src="@{/js/tree.js}"></script>
+	</div>
+</body>
+</html>

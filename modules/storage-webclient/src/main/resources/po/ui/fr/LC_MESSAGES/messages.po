@@ -1,0 +1,23 @@
+msgid "ARCHIVED"
+msgstr "ARCHIVED
+
+msgid "ERROR"
+msgstr "ERROR"
+
+msgid "INFERNO"
+msgstr "INFERNO"
+
+msgid "Deleting a file"
+msgstr "Suppression d'un fichier"
+
+msgid "Submit"
+msgstr "Valider"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "An technical error has occured when getting files."
+msgstr "Une erreur technique est survenue lors de la récupération des fichiers."
+
+msgid "Back to the home page"
+msgstr "Retour à la page d'accueil"

@@ -1,0 +1,25 @@
+{
+	"name": "form-admin",
+	"version": "1.1.0-SNAPSHOT",
+    "description": " Web Client",
+    "private": true,
+    "dependencies": {
+        "bootstrap": "~3.3.7",
+        "bootstrap-datepicker": "~1.6.4",
+        "datatables.net": "~1.10.12",
+        "datatables.net-bs": "~1.10.12",
+        "font-awesome": "~4.6.3",
+        "handlebars": "~4.0.5",
+        "highlightjs": "~9.6.0",
+        "jquery": "~2.2.4",
+        "jquery-mask-plugin": "~1.14.0",
+        "jquery-ui": "~1.12.0",
+        "parsleyjs": "~2.4.4",
+        "requirejs": "~2.3.2"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ]
+}

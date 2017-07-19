@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+	    <groupId>fr.ge.core</groupId>
+	    <artifactId>ge-parent</artifactId>
+	    <version>2.3.7.0-SNAPSHOT</version>
+	</parent>
+
+    <groupId>fr.ge.common.storage</groupId>
+    <artifactId>storage</artifactId>
+    <version>1.0-NO.COMMIT-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>COMMON STORAGE</name>
+
+	<scm>
+		<developerConnection>scm:svn:https://svn.projet-ge.fr/svn/fr/ge/common/storage/trunk</developerConnection>
+		<url>https://svn.projet-ge.fr/svn/fr/ge/common/storage/trunk</url>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
+
+		<javadoc-plugin.version>2.10.3</javadoc-plugin.version>
+		<site-plugin.version>3.5</site-plugin.version>
+		<project-info-reports-plugin.version>2.8.1</project-info-reports-plugin.version>
+
+		<log4j.version>1.2.16</log4j.version>
+		<log4j2.version>2.7</log4j2.version>
+
+		<joda-time.version>2.9.1</joda-time.version>
+		<jaxb-api.version>2.2.12</jaxb-api.version>
+
+		<commons-dbcp.version>2.1.1</commons-dbcp.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<commons-io.version>2.5</commons-io.version>
+
+		<cglib.version>3.2.4</cglib.version>
+		<dozer.version>5.5.1</dozer.version>
+		<jackson.version>2.8.4</jackson.version>
+		<cxf.version>3.1.9</cxf.version>
+		<swagger.version>1.5.12</swagger.version>
+
+		<aspectj.version>1.8.4</aspectj.version>
+
+		<spring-data.version>1.10.4.RELEASE</spring-data.version>
+
+		<jta.version>1.1</jta.version>
+		<h2.version>1.4.190</h2.version>
+
+		<bouncycastle.version>1.54</bouncycastle.version>
+
+		<junit.version>4.12</junit.version>
+		<hamcrest.version>1.3</hamcrest.version>
+		<dbunit.version>2.5.1</dbunit.version>
+
+		<javassist.version>3.18.1-GA</javassist.version>
+
+		<pegdown.version>1.6.0</pegdown.version>
+
+		<jbcrypt.version>0.4.1</jbcrypt.version>
+
+		<flyway.version>3.0</flyway.version>
+		<mybatis.version>3.4.2</mybatis.version>
+		<mybatis-spring.version>1.3.1</mybatis-spring.version>
+
+		<css-target-dir>${project.build.directory}/${project.name}/css</css-target-dir>
+		<webapp-target-dir>${project.build.directory}/${project.build.finalName}</webapp-target-dir>
+		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+        <tracker.version>2.4.0</tracker.version>
+		<hsqldb-version>2.3.2</hsqldb-version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>fr.ge.gent</groupId>
+				<artifactId>tracker-client</artifactId>
+				<version>${tracker.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>javax.ws.rs</groupId>
+						<artifactId>javax.ws.rs-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-web</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pegdown</groupId>
+				<artifactId>pegdown</artifactId>
+				<version>${pegdown.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.ow2.asm</groupId>
+						<artifactId>asm</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+<!-- 			<dependency> -->
+<!-- 				<groupId>com.h2database</groupId> -->
+<!-- 				<artifactId>h2</artifactId> -->
+<!-- 				<scope>test</scope> -->
+<!-- 				<version>${h2.version}</version> -->
+<!-- 			</dependency> -->
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb-version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-core</artifactId>
+				<version>${hamcrest.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-library</artifactId>
+				<version>${hamcrest.version}</version>
+			</dependency>
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
+            </dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis-spring.version}</version>
+			</dependency>
+	        <dependency>
+	            <groupId>org.thymeleaf</groupId>
+	            <artifactId>thymeleaf-testing</artifactId>
+				<version>${thymeleaf-testing.version}</version>
+	        </dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+			</dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<argLine>-Dfile.encoding=UTF-8 -Xmx1024m -XX:MaxPermSize=256m</argLine>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>2.9</version>
+				</plugin>
+<!-- 				<plugin> -->
+<!-- 					<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 					<artifactId>maven-site-plugin</artifactId> -->
+<!-- 					<version>3.5</version> -->
+<!-- 				</plugin> -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jxr-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<appendAssemblyId>true</appendAssemblyId>
+						<descriptorSourceDirectory>src/main/assembly</descriptorSourceDirectory>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>com.github.eirslett</groupId>
+					<artifactId>frontend-maven-plugin</artifactId>
+					<version>0.0.27</version>
+					<configuration>
+						<nodeVersion>v6.9.2</nodeVersion>
+						<npmVersion>2.14.20</npmVersion>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>3.6</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>pmd</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-java2wadl-plugin</artifactId>
+					<version>${cxf.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.0.0</version>
+					<configuration>
+						<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+<!-- 		<plugins> -->
+<!-- 			<plugin> -->
+<!-- 				<groupId>com.github.jeluard</groupId> -->
+<!-- 				<artifactId>plantuml-maven-plugin</artifactId> -->
+<!-- 				<version>1.2</version> -->
+<!-- 				<configuration> -->
+<!-- 					<sourceFiles> -->
+<!-- 						<directory>${basedir}/src/site/uml</directory> -->
+<!-- 						<includes> -->
+<!-- 							<include>**/*.uml</include> -->
+<!-- 						</includes> -->
+<!-- 					</sourceFiles> -->
+<!-- 					<outputDirectory>${project.build.directory}/site/images/uml</outputDirectory> -->
+<!-- 				</configuration> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>uml-generate</id> -->
+<!-- 						<phase>pre-site</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>generate</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 				<dependencies> -->
+<!-- 					<dependency> -->
+<!-- 						<groupId>net.sourceforge.plantuml</groupId> -->
+<!-- 						<artifactId>plantuml</artifactId> -->
+<!-- 						<version>8043</version> -->
+<!-- 					</dependency> -->
+<!-- 				</dependencies> -->
+<!-- 			</plugin> -->
+<!-- 		</plugins> -->
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<id>aggregate</id>
+						<inherited>false</inherited>
+						<reports>
+							<report>index</report>
+							<report>summary</report>
+							<report>license</report>
+							<report>scm</report>
+							<report>distribution-management</report>
+							<report>issue-tracking</report>
+							<report>project-team</report>
+							<report>mailing-list</report>
+							<report>modules</report>
+							<report>dependency-management</report>
+							<report>dependency-info</report>
+							<report>dependency-convergence</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>javadoc-no-fork</report>
+							<report>test-javadoc-no-fork</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<checkModificationExcludes>
+						<checkModificationExclude>pom.xml</checkModificationExclude>
+					</checkModificationExcludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>pmd</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<profiles>
+		<profile>
+			<id>m2e</id>
+			<activation>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<filtering>true</filtering>
+						<directory>src/main/config</directory>
+					</resource>
+				</resources>
+			</build>
+			<properties>
+				<css-target-dir>${project.build.directory}/m2e-wtp/web-resources/css</css-target-dir>
+				<webapp-target-dir>${project.build.directory}/m2e-wtp/web-resources</webapp-target-dir>
+
+				<jdbc.ge_storage.jndi.name>jdbc/ge_storage</jdbc.ge_storage.jndi.name>
+
+				<log.file.technical>${project.build.directory}/logs/tech.log</log.file.technical>
+				<log.file.functional>${project.build.directory}/logs/func.log</log.file.functional>
+				<log.file.thirdParty>${project.build.directory}/logs/thirdParty.log</log.file.thirdParty>
+				<log.max_size>1MB</log.max_size>
+				<log.max_index>20</log.max_index>
+				<log.level>warn</log.level>
+				<log.level_fwk>warn</log.level_fwk>
+				<log.level_app>debug</log.level_app>
+			</properties>
+		</profile>
+	</profiles>
+	
+	<modules>
+		<module>modules/storage-service</module>
+		<module>modules/storage-ws-contract</module>
+		<module>modules/storage-ws-server</module>
+    	<module>modules/storage-webclient</module>
+  </modules>
+</project>
