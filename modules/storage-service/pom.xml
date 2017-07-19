@@ -154,23 +154,18 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<properties>
-						<fromVersion>${fromVersion}</fromVersion>
-					</properties>
-					<appendAssemblyId>false</appendAssemblyId>
-					<finalName>${project.artifactId}-${project.version}</finalName>
-					<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-					<descriptors>
-						<descriptor>${project.basedir}/src/main/assembly/${project.artifactId}-assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
 				<executions>
 					<execution>
+						<id>Assemble les scripts BDD pour la bulle STORAGE</id>
 						<goals>
 							<goal>single</goal>
 						</goals>
 						<phase>package</phase>
+						<configuration>
+							<descriptors>
+								<descriptor>${project.basedir}/src/main/assembly/${project.artifactId}-assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
