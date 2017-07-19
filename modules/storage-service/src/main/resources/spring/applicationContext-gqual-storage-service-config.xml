@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- Le scan des composants pour le autowire -->
+    <context:component-scan base-package="fr.ge.*" />       
+	
+	<!-- Chargement du property-placeholder -->
+	<import resource="classpath:spring/gqual-storage-service-properties-files-config.xml"/>
+
+	<!-- Chargement de la datasource ge_exchange par ressource JNDI -->
+	<import resource="classpath:spring/gqual-storage-service-datasource-jndi.xml"/>
+
+	<!-- Chargement de l'accès à la couche de stockage des données : ORM -->
+	<import resource="classpath:spring/gqual-storage-service-persistence-config.xml"/>
+	
+	<!-- Chargement des services -->
+	<import resource="classpath:spring/gqual-storage-service-config.xml"/>
+
+	<!-- Chargement de la conf tracker client -->
+	<import resource="classpath*:spring/uid-service-cxf3-context.xml" />
+	
+</beans>
+

@@ -1,0 +1,46 @@
+.box {
+    display: block;
+    border: 1px solid #ddd;
+    height: 12em;
+    margin: .8em;
+    vertical-align: middle;
+    box-shadow: 2px 2px 2px #d3d3d3;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+
+    .content {
+        padding: 4px 6px;
+    }
+
+    a, button {
+        &.btn {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-transform: uppercase;
+        }
+    }
+
+    > h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    > .content {
+        height: 7.2em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+h3 {
+    background: #fff url(../images/pave_a_savoir_haut.png) no-repeat;
+    border-bottom: 1px solid #ddd;
+    font-size: @font-size-base;
+    font-weight: bold;
+    margin: 0px 0px ceil(@font-size-base / 2) 0px;
+    padding: ceil(@font-size-base / 2) ceil(@font-size-base / 2) ceil(@font-size-base / 4) @font-size-base;
+    text-transform: uppercase;
+}

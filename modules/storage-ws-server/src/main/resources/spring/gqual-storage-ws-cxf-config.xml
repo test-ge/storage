@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util" xmlns:cxf="http://cxf.apache.org/core"
+    xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+    xmlns:jaxws="http://cxf.apache.org/jaxws" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+                        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+                        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+
+    <cxf:bus>
+        <cxf:features>
+            <cxf:logging />
+        </cxf:features>
+    </cxf:bus>
+    
+    <jaxrs:server id="restServer" address="/">
+        <jaxrs:serviceBeans>
+			<ref bean="storageRestService" />	
+        </jaxrs:serviceBeans>
+		<jaxrs:providers>
+            <!-- <bean class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter" /> -->
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+            <bean class="org.apache.cxf.jaxrs.model.wadl.WadlGenerator">
+                <property name="linkAnyMediaTypeToXmlSchema" value="true" />
+                <property name="namespacePrefix" value="ge" />
+                <property name="incrementNamespacePrefix" value="false" />
+            </bean>
+		</jaxrs:providers>
+		<jaxrs:features>
+			<bean class="org.apache.cxf.jaxrs.swagger.Swagger2Feature">
+				<property name="title" value="STORAGE REST Server" />
+				<property name="description" value="" />
+				<property name="contact" value="Team Sonic" />
+				<property name="scan" value="true" />
+			</bean>
+		</jaxrs:features>
+	</jaxrs:server>
+	
+	<bean id="storageRestService" class="fr.ge.common.storage.ws.rest.impl.StorageRestServiceImpl" />
+</beans>

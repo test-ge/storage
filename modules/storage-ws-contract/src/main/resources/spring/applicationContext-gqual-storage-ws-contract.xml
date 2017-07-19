@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs-client" 
+	xmlns:http="http://cxf.apache.org/transports/http/configuration" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd
+                        http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+                        
+	<!-- Le scan des composants pour le autowired -->
+    <context:component-scan base-package="fr.ge.*" /> 
+        
+    <!-- Import de la conf des webservices -->                    
+	<import resource="classpath:spring/gqual-storage-ws-contract-webservice.xml" />
+        
+    <!-- Import de la conf de la façade -->                    
+	<import resource="classpath:spring/gqual-storage-ws-contract-facade.xml" />        
+</beans>

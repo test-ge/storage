@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:jaxrs="http://cxf.apache.org/jaxrs-client" xmlns:http="http://cxf.apache.org/transports/http/configuration" xmlns:sec="http://cxf.apache.org/configuration/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd
+                        http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd
+                        http://cxf.apache.org/configuration/security http://cxf.apache.org/schemas/configuration/security.xsd">
+    
+	<http:conduit name="{http://rest.ws.storage.common.ge.fr/}IStorageRestService.http-conduit">
+	      <http:client ConnectionTimeout="${ws.storage.timeout.connect:1000}" ReceiveTimeout="${ws.storage.timeout.receive:3000}" Referer="Mozilla Chrome Referrer" BrowserType="Mozilla Chroms UA" />
+	</http:conduit>
+	
+    <bean id="restObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+
+    <bean class="org.springframework.beans.factory.config.MethodInvokingBean">
+        <property name="targetObject" ref="restObjectMapper" />
+        <property name="targetMethod" value="configure" />
+        <property name="arguments">
+            <list>
+                <value type="com.fasterxml.jackson.databind.DeserializationFeature">FAIL_ON_UNKNOWN_PROPERTIES</value>
+                <value>false</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="jaxbJsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider">
+        <constructor-arg ref="restObjectMapper" />
+        <constructor-arg>
+            <array>
+                <value type="com.fasterxml.jackson.jaxrs.cfg.Annotations">JAXB</value>
+            </array>
+        </constructor-arg>
+    </bean>
+    
+    <jaxrs:client id="storageRestService" address="${mas.storage.service.url}" serviceClass="fr.ge.common.storage.ws.rest.IStorageRestService">
+        <jaxrs:providers>
+            <ref bean="jaxbJsonProvider" />
+        </jaxrs:providers>
+    </jaxrs:client>
+</beans>

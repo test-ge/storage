@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.ge.common.storage</groupId>
+		<artifactId>storage</artifactId>
+		<relativePath>../..</relativePath>
+	</parent>
+    <artifactId>storage-ws-contract</artifactId>
+   	<version>1.0-NO.COMMIT-SNAPSHOT</version>
+    <name>COMMON STORAGE WS CONTRACT</name>
+    
+    <properties>
+    	<sonar.skip>true</sonar.skip>
+	</properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-service-description</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+		<finalName>storage</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <action>
+                                        <execute>
+                                            <runOnIncremental />
+                                        </execute>
+                                    </action>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.cxf</groupId>
+                                        <artifactId>cxf-java2wadl-plugin</artifactId>
+                                        <versionRange>${cxf.version}</versionRange>
+                                        <goals>
+                                            <goal>parsejavadoc</goal>
+                                            <goal>java2wadl</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-java2wadl-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>parsejavadoc</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>parsejavadoc</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>process-classes</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>java2wadl</goal>
+                        </goals>
+                        <configuration>
+                            <classResourceNames>
+                            	<!-- A COMPLETER -->
+                            </classResourceNames>
+                            <docProvider>org.apache.cxf.maven_plugin.javatowadl.ResourceMapJavaDocProvider</docProvider>
+                            <attachWadl>true</attachWadl>
+                            <outputFile>${project.build.directory}/generated-wadl/api.wadl</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.sf.xsltmp</groupId>
+                <artifactId>xslt-generator-maven-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>transform-wadl</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>many-to-many</goal>
+                        </goals>
+                        <configuration>
+                            <xslTemplate>${project.parent.parent.basedir}/src/site/wadl.xsl</xslTemplate>
+                            <srcDir>${project.build.directory}/generated-wadl</srcDir>
+                            <srcIncludes>*.wadl</srcIncludes>
+                            <destDir>${project.build.directory}/generated-site/xhtml</destDir>
+                            <fileNameRegex>^(.*)\.wadl$</fileNameRegex>
+                            <fileNameReplacement>rest-$1.xhtml</fileNameReplacement>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+<!--             <plugin> -->
+<!--                 <groupId>org.jacoco</groupId> -->
+<!--                 <artifactId>jacoco-maven-plugin</artifactId> -->
+<!--             </plugin> -->
+        </plugins>
+    </build>
+
+</project>
