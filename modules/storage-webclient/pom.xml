@@ -27,9 +27,10 @@
 		<groupId>fr.ge.common.storage</groupId>
 		<artifactId>storage</artifactId>
 		<relativePath>../..</relativePath>
+		<version>2.3.7.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>storage-webclient</artifactId>
-	<version>1.0-NO.COMMIT-SNAPSHOT</version>
+	<version>2.3.7.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>COMMON STORAGE WEBCLIENT</name>
@@ -39,11 +40,17 @@
 		<ge-authentification-ct.version>2.3.7.0-SNAPSHOT</ge-authentification-ct.version>
 		<ge-core.version>2.3.7.0-SNAPSHOT</ge-core.version>
 		<ge-i18n-thymeleaf3.version>2.3.6.1</ge-i18n-thymeleaf3.version>
+		<ge-core-web.version>2.3.7.0-SNAPSHOT</ge-core-web.version>
 		<webapp-target-dir>${project.build.directory}/${project.build.finalName}</webapp-target-dir>
 	</properties>
 
 	<dependencies>
 		<!-- Guichet-Entreprises dependencies -->
+			<dependency>
+			<groupId>fr.ge.core</groupId>
+			<artifactId>ge-core-web</artifactId>
+			<version>${ge-core-web.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>fr.ge.common.storage</groupId>
 			<artifactId>storage-ws-contract</artifactId>

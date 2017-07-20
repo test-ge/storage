@@ -6,7 +6,7 @@
                         http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd
                         http://cxf.apache.org/configuration/security http://cxf.apache.org/schemas/configuration/security.xsd">
     
-	<http:conduit name="{http://rest.ws.storage.common.ge.fr/}IStorageRestService.http-conduit">
+<!-- 	<http:conduit name="{http://rest.ws.storage.common.ge.fr/}IStorageRestService.http-conduit">
 	      <http:client ConnectionTimeout="${ws.storage.timeout.connect:1000}" ReceiveTimeout="${ws.storage.timeout.receive:3000}" Referer="Mozilla Chrome Referrer" BrowserType="Mozilla Chroms UA" />
 	</http:conduit>
 	
@@ -30,11 +30,11 @@
                 <value type="com.fasterxml.jackson.jaxrs.cfg.Annotations">JAXB</value>
             </array>
         </constructor-arg>
-    </bean>
+    </bean> -->
     
     <jaxrs:client id="storageRestService" address="${mas.storage.service.url}" serviceClass="fr.ge.common.storage.ws.rest.IStorageRestService">
         <jaxrs:providers>
-            <ref bean="jaxbJsonProvider" />
+            <ref bean="restProviders" />
         </jaxrs:providers>
     </jaxrs:client>
 </beans>

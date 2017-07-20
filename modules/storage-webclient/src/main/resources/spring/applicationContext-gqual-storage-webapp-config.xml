@@ -10,39 +10,46 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<context:annotation-config /> 
-	
+	<context:annotation-config />
+
 	<!-- Chargement du contexte spring du chargement des fichiers properties -->
-	<import resource="classpath:spring/gqual-storage-webapp-properties-files-config.xml" />
+	<import
+		resource="classpath:spring/gqual-storage-webapp-properties-files-config.xml" />
+
+	<!-- Configuration de la gestion des exceptions génériques (ge-core-web)-->
+	<import resource="classpath*:spring/ge-core-web-rest-config.xml" />
 
 	<!-- Configuration du bus cxf et des interface WS -->
 	<import resource="classpath:spring/gqual-storage-webapp-cxf-config.xml" />
 
 	<!-- Chargement du core spring -->
 	<import resource="classpath:spring/gqual-storage-webapp-core-config.xml" />
-	
+
 	<!-- Chargement des annotations @Controler + Chargement des interceptor 
 		SpringMVC -->
 	<import resource="classpath:spring/gqual-storage-webapp-controler-config.xml" />
-	
+
 	<!-- Chargement de la conf de la façade -->
 	<import resource="classpath:spring/gqual-storage-webapp-facade-config.xml" />
 
 	<!-- Chargement des messages Source pour le changement de langues -->
 	<import resource="classpath:spring/gqual-storage-webapp-language-config.xml" />
-	
+
 	<!-- Chargement de la configurations de fichiers de traduction po -->
 	<import resource="classpath:spring/gqual-storage-webapp-i18n-config.xml" />
 
 	<!-- Chargement de la conf storage-service -->
-	<import resource="classpath*:spring/applicationContext-gqual-storage-service-config.xml" />
+	<import
+		resource="classpath*:spring/applicationContext-gqual-storage-service-config.xml" />
 
 	<!-- Chargement de la conf appStatus -->
 	<import resource="classpath:spring/gqual-storage-appstatus-context.xml" />
-	
+
 	<!-- Chargement de la conf de la brique Account -->
-<!-- 	<import resource="classpath*:spring/applicationContext-ge-authentification-ct-web-config.xml" /> -->
-	
+	<!-- <import resource="classpath*:spring/applicationContext-ge-authentification-ct-web-config.xml" 
+		/> -->
+
 	<!-- Chargement de la classe d'intégration du ct-authentification -->
-<!-- 	<import resource="classpath*:spring/gqual-storage-webapp-security-config.xml" /> -->
+	<!-- <import resource="classpath*:spring/gqual-storage-webapp-security-config.xml" 
+		/> -->
 </beans>
