@@ -36,7 +36,7 @@
 	<name>COMMON STORAGE WEBCLIENT</name>
 
 	<properties>
-		<storage-ws-contract.version>1.0-NO.COMMIT-SNAPSHOT</storage-ws-contract.version>
+		<storage-ws-contract.version>2.3.7.0-SNAPSHOT</storage-ws-contract.version>
 		<ge-authentification-ct.version>2.3.7.0-SNAPSHOT</ge-authentification-ct.version>
 		<ge-core.version>2.3.7.0-SNAPSHOT</ge-core.version>
 		<ge-i18n-thymeleaf3.version>2.3.6.1</ge-i18n-thymeleaf3.version>
