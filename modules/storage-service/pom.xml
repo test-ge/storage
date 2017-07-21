@@ -156,11 +156,11 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
+						<id>Assemble les scripts BDD pour la bulle STORAGE</id>
 						<goals>
 							<goal>single</goal>
 						</goals>
+						<phase>package</phase>
 						<configuration>
 							<descriptors>
 								<descriptor>${project.basedir}/src/main/assembly/${project.artifactId}-assembly.xml</descriptor>
@@ -169,7 +169,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--
 			<plugin>
             	<groupId>org.codehaus.mojo</groupId>
             	<artifactId>build-helper-maven-plugin</artifactId>
@@ -193,7 +192,6 @@
             		</execution>
             	</executions>
             </plugin>
-            -->
 		</plugins>
 	</build>
 
