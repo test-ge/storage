@@ -180,6 +180,7 @@
 				<directory>${project.build.directory}/generated-resources</directory>
 			</resource>
 		</resources>
+		<!--
         <plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -205,6 +206,7 @@
 				</executions>
 			</plugin>
         </plugins>
+        -->
     </build>
 
 	<profiles>
