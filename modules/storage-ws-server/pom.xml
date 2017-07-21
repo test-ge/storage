@@ -10,7 +10,6 @@
 		<version>2.3.7.0-SNAPSHOT</version>
 	</parent>
     <artifactId>storage-ws-server</artifactId>
-	<version>2.3.7.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>COMMON STORAGE WS SERVER</name>
