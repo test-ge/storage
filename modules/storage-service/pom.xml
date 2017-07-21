@@ -162,6 +162,7 @@
 						</goals>
 						<phase>package</phase>
 						<configuration>
+						    <attach>false</attach>
 							<descriptors>
 								<descriptor>${project.basedir}/src/main/assembly/${project.artifactId}-assembly.xml</descriptor>
 							</descriptors>
