@@ -60,7 +60,7 @@ var locale = { language: [[${#locale.language}]], country: [[${#locale.country}]
 <script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 <script src="js/storage.js" th:src="@{/js/storage.js}"></script>
-<script src="" th:src="${urlFeedback} + '/ws-feedback/api/v1/feedback/widget.js'"></script>
+<script src="" th:src="${hostFeedback} + ${urlFeedback}"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

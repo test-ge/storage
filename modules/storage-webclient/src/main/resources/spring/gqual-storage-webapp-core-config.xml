@@ -21,7 +21,8 @@
     	<!-- Storage Configuration bean -->
 	<bean id="storageConfigurationWebBean" class="fr.ge.common.storage.bean.conf.StorageConfigurationWebBean"
 		factory-method="getInstance">
-		<property name="urlFeedback" value="${ws.feedback.url}" />
+		<property name="urlFeedback" value="${ge.feedback.url}" />
+		<property name="hostFeedback" value="${ge.feedback.host}" />
 	</bean>
 
     <bean id="springTemplateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
