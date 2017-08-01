@@ -62,6 +62,7 @@ public class StorageController {
   public String displayHomePage(final Model model, final HttpServletRequest request, final Locale locale)
     throws TechniqueException {
     model.addAttribute("urlFeedback", storageConfigurationWebBean.getUrlFeedback());
+    model.addAttribute("hostFeedback", storageConfigurationWebBean.getHostFeedback());
     LOGGER_FONC.debug("Home page displaying all trays");
 
     // -->Archived tray

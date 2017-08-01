@@ -20,6 +20,9 @@ public class StorageConfigurationWebBean implements Serializable {
   /** The URL for the feedback user. */
   private String urlFeedback;
 
+  /** The host for the feedback user. */
+  private String hostFeedback;
+
   /**
    * Retrieves the unique instance of the StorageConfigurationWebBean.
    *
@@ -46,5 +49,24 @@ public class StorageConfigurationWebBean implements Serializable {
    */
   public void setUrlFeedback(String urlFeedback) {
     this.urlFeedback = urlFeedback;
+  }
+
+  /**
+   * Accesseur sur l'attribut {@link #hostFeedback}.
+   *
+   * @return String hostFeedback
+   */
+  public String getHostFeedback() {
+    return hostFeedback;
+  }
+
+  /**
+   * Mutateur sur l'attribut {@link #hostFeedback}.
+   *
+   * @param hostFeedback
+   *          la nouvelle valeur de l'attribut hostFeedback
+   */
+  public void setHostFeedback(String hostFeedback) {
+    this.hostFeedback = hostFeedback;
   }
 }
