@@ -69,12 +69,20 @@
 		<flyway.version>3.0</flyway.version>
 		<mybatis.version>3.4.2</mybatis.version>
 		<mybatis-spring.version>1.3.1</mybatis-spring.version>
-
+		<jackson-annotations.version>2.8.3</jackson-annotations.version>
 		<css-target-dir>${project.build.directory}/${project.name}/css</css-target-dir>
 		<webapp-target-dir>${project.build.directory}/${project.build.finalName}</webapp-target-dir>
-		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <tracker.version>2.4.0</tracker.version>
 		<hsqldb-version>2.3.2</hsqldb-version>
+		<jackson-jaxrs-json-provider.version>2.8.4</jackson-jaxrs-json-provider.version>
+		<ognl.version>3.1.12</ognl.version>
+		<commons-lang3.version>3.4</commons-lang3.version>
+		<aspectjweaver.version>1.8.9</aspectjweaver.version>
+		<objenesis.version>2.1</objenesis.version>
+		<spring-security-config.version>4.2.1.RELEASE</spring-security-config.version>
+		<spring-security-web.version>4.2.1.RELEASE</spring-security-web.version>
+		<jackson-dataformat-xml.version>2.8.3</jackson-dataformat-xml.version>
 	</properties>
 
 	<dependencyManagement>
@@ -182,6 +190,66 @@
                 <artifactId>cglib</artifactId>
                 <version>${cglib.version}</version>
             </dependency>
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-annotations</artifactId>
+			    <version>${jackson-annotations.version}</version>
+			</dependency>            
+			<dependency>
+			    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+			    <artifactId>jackson-jaxrs-json-provider</artifactId>
+			    <version>${jackson-jaxrs-json-provider.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>ognl</groupId>
+			    <artifactId>ognl</artifactId>
+			    <version>${ognl.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>org.apache.commons</groupId>
+			  <artifactId>commons-lang3</artifactId>
+			  <version>${commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>org.aspectj</groupId>
+			  <artifactId>aspectjweaver</artifactId>
+			  <version>${aspectjweaver.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.dbunit</groupId>
+				<artifactId>dbunit</artifactId>
+				<version>${dbunit.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.objenesis</groupId>
+			    <artifactId>objenesis</artifactId>
+			    <version>${objenesis.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>org.springframework.security</groupId>
+			  <artifactId>spring-security-config</artifactId>
+			  <version>${spring-security-config.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>org.springframework.security</groupId>
+			  <artifactId>spring-security-web</artifactId>
+			  <version>${spring-security-web.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>com.fasterxml.jackson.dataformat</groupId>
+			    <artifactId>jackson-dataformat-xml</artifactId>
+			    <version>${jackson-dataformat-xml.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>commons-io</groupId>
+			  <artifactId>commons-io</artifactId>
+			  <version>${commons-io.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>javax.xml.bind</groupId>
+			  <artifactId>jaxb-api</artifactId>
+			  <version>${jaxb-api.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
