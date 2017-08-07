@@ -16,7 +16,7 @@
 	<description>Couche de service et de persistance</description>
 
 	<properties>
-		<ge-core.version>2.3.8.0</ge-core.version>
+		<ge-core.version>2.3.9.0-SNAPSHOT</ge-core.version>
 	</properties>
 
 	<dependencies>
