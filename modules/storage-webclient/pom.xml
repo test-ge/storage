@@ -20,7 +20,8 @@
 	conditions as regards security. The fact that you are presently reading this 
 	means that you have had knowledge of the CeCILL license and that you accept 
 	its terms. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -45,7 +46,7 @@
 
 	<dependencies>
 		<!-- Guichet-Entreprises dependencies -->
-			<dependency>
+		<dependency>
 			<groupId>fr.ge.core</groupId>
 			<artifactId>ge-core-web</artifactId>
 			<version>${ge-core-web.version}</version>
@@ -55,21 +56,21 @@
 			<artifactId>storage-ws-contract</artifactId>
 			<version>${storage-ws-contract.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>fr.ge</groupId> -->
-<!-- 			<artifactId>ge-authentification-ct</artifactId> -->
-<!-- 			<version>${ge-authentification-ct.version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>fr.ge</groupId> -->
+		<!-- <artifactId>ge-authentification-ct</artifactId> -->
+		<!-- <version>${ge-authentification-ct.version}</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>fr.ge.core</groupId>
 			<artifactId>ge-core</artifactId>
 			<version>${ge-core.version}</version>
 		</dependency>
 		<dependency>
-            <groupId> fr.ge.common.i18n</groupId>
-            <artifactId>ge-i18n-thymeleaf3</artifactId>
-            <version>${ge-i18n-thymeleaf3.version}</version>
-        </dependency>	
+			<groupId> fr.ge.common.i18n</groupId>
+			<artifactId>ge-i18n-thymeleaf3</artifactId>
+			<version>${ge-i18n-thymeleaf3.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -177,21 +178,21 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-        <dependency>
-             <groupId>org.apache.logging.log4j</groupId>
-             <artifactId>log4j-slf4j-impl</artifactId>
-             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-             <groupId>org.apache.logging.log4j</groupId>
-             <artifactId>log4j-api</artifactId>
-             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-             <groupId>org.apache.logging.log4j</groupId>
-             <artifactId>log4j-core</artifactId>
-             <scope>runtime</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>ge-storage</finalName>
@@ -216,33 +217,22 @@
 				<directory>${project.build.directory}/generated-resources</directory>
 			</resource>
 		</resources>
-        <plugins>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <packagingExcludes>css/mixins/**, **/*.less</packagingExcludes>
-                </configuration>
-            </plugin>
-            <!--
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
-        </plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<packagingExcludes>css/mixins/**, **/*.less</packagingExcludes>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <executions> 
+				<execution> <id>make-assembly</id> <phase>package</phase> <goals> <goal>single</goal> 
+				</goals> </execution> </executions> </plugin> -->
+		</plugins>
 	</build>
 
 	<profiles>
