@@ -32,7 +32,7 @@
 
 	<tx:annotation-driven transaction-manager="geStorageTransactionManager" />
     
-	<jee:jndi-lookup id="storageDataSource" jndi-name="${jdbc.ge_storage.jndi.name}"
+	<jee:jndi-lookup id="storageDataSource" jndi-name="${jndi.db.datasource}"
 		expected-type="javax.sql.DataSource" />
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
