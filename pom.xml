@@ -11,7 +11,7 @@
 
 	<groupId>fr.ge.common.storage</groupId>
 	<artifactId>storage</artifactId>
-	<version>2.5.2.1</version>
+	<version>2.5.2.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>COMMON STORAGE</name>
@@ -20,7 +20,7 @@
 		<connection>scm:git:https://tools.projet-ge.fr/gitlab/sonic/storage.git</connection>
 		<developerConnection>scm:git:https://tools.projet-ge.fr/gitlab/sonic/storage.git</developerConnection>
 		<url>https://tools.projet-ge.fr/gitlab/sonic/storage</url>
-		<tag>storage-2.5.2.1</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
