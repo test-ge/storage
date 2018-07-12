@@ -3,17 +3,17 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>fr.ge.common.storage</groupId>
-		<artifactId>storage</artifactId>
-		<relativePath>../..</relativePath>
-		<version>2.5.2.2-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>fr.ge.common.storage</groupId>
+        <artifactId>storage</artifactId>
+        <relativePath>../..</relativePath>
+        <version>2.7.6.0-SNAPSHOT</version>
+    </parent>
+
     <artifactId>storage-ws-server</artifactId>
     <packaging>war</packaging>
-
     <name>COMMON STORAGE WS SERVER</name>
-	<description>Couche d'implémentation des contrats de service</description>
+    <description>Couche d'implémentation des contrats de service</description>
 
     <dependencies>
         <dependency>
@@ -30,34 +30,34 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxrs</artifactId>
@@ -74,16 +74,9 @@
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-rs-service-description</artifactId>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-security-cors</artifactId>
-        </dependency>
-        -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>swagger-ui</artifactId>
-            <version>2.2.6</version>
         </dependency>
 
         <dependency>
@@ -132,127 +125,100 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <scope>test</scope>
-        </dependency>	
-		<dependency>
-			<groupId>org.easytesting</groupId>
-			<artifactId>fest-assert</artifactId>
-			<scope>test</scope>
-		</dependency>
+        </dependency>    
+        <dependency>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-assert</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-rs-client</artifactId>
         </dependency>
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
         </dependency>
     </dependencies>
-	
+    
     <build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-				<includes>
-					<include>**/*.xml</include>
-					<include>**/*.properties</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-				<excludes>
-					<exclude>**/*.xml</exclude>
-					<exclude>**/*.properties</exclude>
-				</excludes>
-			</resource>
-			<resource>
-				<directory>${project.build.directory}/generated-resources</directory>
-			</resource>
-		</resources>
-		<!--
-        <plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<properties>
-						<fromVersion>${fromVersion}</fromVersion>
-					</properties>
-					<appendAssemblyId>false</appendAssemblyId>
-					<finalName>storage-ws-server-config-${project.version}</finalName>
-					<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-					<descriptors>
-						<descriptor>${project.basedir}/src/main/assembly/storage-ws-server-assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-			</plugin>
-        </plugins>
-        -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.xml</exclude>
+                    <exclude>**/*.properties</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.build.directory}/generated-resources</directory>
+            </resource>
+        </resources>
     </build>
 
-	<profiles>
-		<profile>
-			<id>m2e</id>
-			<activation>
-				<property>
-					<name>m2e.version</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-resources-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>deploy-configuration</id>
-								<phase>generate-resources</phase>
-								<goals>
-									<goal>copy-resources</goal>
-								</goals>
-								<configuration>
-									<outputDirectory>${basedir}/target/classes</outputDirectory>
-									<resources>
-										<resource>
-											<directory>src/main/config/</directory>
-											<includes>
-												<include>*.xml</include>
-												<include>*.properties</include>
-											</includes>
-											<filtering>true</filtering>
-										</resource>
-									</resources>
-									<encoding>UTF-8</encoding>
-									<useDefaultDelimiters>false</useDefaultDelimiters>
-									<delimiters>
-										<delimiter>@@*@@</delimiter>
-									</delimiters>
-									<filters>
-										<filter>${basedir}/src/main/filters/gqual-storage-ws.properties</filter>
-									</filters>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>m2e</id>
+            <activation>
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>deploy-configuration</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${basedir}/target/classes</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/main/config/</directory>
+                                            <includes>
+                                                <include>*.xml</include>
+                                                <include>*.properties</include>
+                                            </includes>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                    <encoding>UTF-8</encoding>
+                                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                                    <delimiters>
+                                        <delimiter>@@*@@</delimiter>
+                                    </delimiters>
+                                    <filters>
+                                        <filter>${basedir}/src/main/filters/gqual-storage-ws.properties</filter>
+                                    </filters>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
